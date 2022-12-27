@@ -1,16 +1,28 @@
 import styles from "./Task.module.css";
-import { Trash } from "phosphor-react";
+import { Trash, CheckCircle } from "phosphor-react";
+import { ITask } from "../App";
 
-export function Task() {
+interface Props {
+  task: ITask;
+  onDelete: (taskId: string) => void;
+  onComplete: (taskId: string) => void;
+}
+
+export function Task({ task, onDelete, onComplete }: Props) {
   return (
     <div className={styles.task}>
-      <button className={styles.checkContainer}>
-        <div />
+      <button
+        className={styles.checkContainer}
+        onClick={() => onComplete(task.id)}
+      >
+        {task.isCompleted ? <CheckCircle /> : <div />}
       </button>
 
-      <p>Texto</p>
+      <p className={task.isCompleted ? styles.textCompleted : ""}>
+        {task.title}
+      </p>
 
-      <button className={styles.deleteButton}>
+      <button className={styles.deleteButton} onClick={() => onDelete(task.id)}>
         <Trash size={20} />
       </button>
     </div>
