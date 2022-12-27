@@ -1,11 +1,16 @@
 import styles from "./App.module.css";
+import { Header } from "./components/Header";
+import { Numbers } from "./components/Numbers";
 import "./global.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Ola</h1>
-    </div>
+    <>
+      <Header />
+      <div className={styles.wrapper}>
+        <Numbers />
+      </div>
+    </>
   );
 }
 
